@@ -1,5 +1,6 @@
 kg\home\gav\service\impl\FeedingEventServiceImpl.class
 kg\home\gav\service\CatFoodService.class
+kg\home\gav\configuration\DatabaseConfig.class
 kg\home\gav\entity\Bot.class
 kg\home\gav\enums\CatFoodType.class
 kg\home\gav\service\impl\CatFoodServiceImpl.class

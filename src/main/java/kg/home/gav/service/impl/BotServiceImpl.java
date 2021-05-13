@@ -33,7 +33,7 @@ public class BotServiceImpl implements BotService {
         if (update.hasCallbackQuery()) {
             bot.setChatId(update.getCallbackQuery().getMessage().getChatId());
             CallbackQuery callbackQuery = update.getCallbackQuery();
-            log.info("processMessage: callbackQuery: {}", callbackQuery.getMessage());
+            log.info("processMessage: callbackQuery: {}");
             callbackHandlerService.processCallback(callbackQuery, bot);
         } else if (bot.isInReplenishMode()) {
             bot.setChatId(update.getMessage().getChatId());

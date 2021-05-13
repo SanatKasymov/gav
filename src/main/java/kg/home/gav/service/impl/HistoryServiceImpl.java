@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 @Service
 @Slf4j
@@ -33,7 +34,7 @@ public class HistoryServiceImpl implements HistoryService {
     @Override
     public void showHistoryForThreeDays(Bot bot) {
         LocalDateTime ldt = LocalDateTime.now().minusDays(3);
-        Date threeDaysAgo = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+        Date threeDaysAgo = Date.from(ldt.atZone(TimeZone.getTimeZone("Asia/Bishkek").toZoneId()).toInstant());
         List<FeedingEvent> feedingEvents =
                 feedingEventService.getAllByDateTimeAfter(threeDaysAgo);
         String message = createMessage(feedingEvents);

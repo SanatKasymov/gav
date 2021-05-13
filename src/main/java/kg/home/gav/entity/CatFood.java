@@ -1,12 +1,17 @@
 package kg.home.gav.entity;
 
-import kg.home.gav.enums.CatFoodType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name= "CAT_FOOD")
 public class CatFood {
 
@@ -14,12 +19,6 @@ public class CatFood {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "name")
-    String name;
-
-    @Column(name = "type")
-    CatFoodType type;
-
     @Column(name = "amount")
-    int amount;
+    double amount;
 }

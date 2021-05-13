@@ -8,7 +8,8 @@ public enum CatFoodPortion {
     THIRD("1/3", "30 грамм (стандартная упаковка)"),
     HALF("1/2", "40 грамм (стандартная упаковка)"),
     TWO_THIRDS("2/3", "60 грамм (стандартная упаковка)"),
-    FULL("1", "85 грамм (стандартная упаковка)")
+    FULL("1", "85 грамм (стандартная упаковка)"),
+    OTHER("Другой вид корма", "Сухой или домашний корм")
     ;
 
     private static final Map<String, CatFoodPortion> BY_NAME = new HashMap<>();
@@ -23,7 +24,7 @@ public enum CatFoodPortion {
 
     static {
         for (CatFoodPortion type: values()) {
-            BY_NAME.put(type.value, type);
+            BY_NAME.put(type.toString(), type);
         }
     }
 

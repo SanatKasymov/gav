@@ -47,6 +47,7 @@ public class HistoryServiceImpl implements HistoryService {
         }
         StringBuilder message = new StringBuilder();
         for (FeedingEvent feedingEvent: feedingEvents) {
+            dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Bishkek"));
             String strDate = dateFormat.format(feedingEvent.getDateTime());
             String username = feedingEvent.getUsername();
             String portion = feedingEvent.getPortion().value;

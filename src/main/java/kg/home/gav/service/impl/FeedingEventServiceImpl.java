@@ -17,6 +17,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -86,6 +87,7 @@ public class FeedingEventServiceImpl implements FeedingEventService {
         } else {
             catFood.setAmount(catFood.getAmount() - portion);
             catFoodService.save(catFood);
+            dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Bishkek"));
             String dateTime = dateFormat.format(new Date());
             FeedingEvent feedingEvent = FeedingEvent.builder()
                     .dateTime(new Date())

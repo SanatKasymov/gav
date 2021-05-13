@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -66,7 +67,11 @@ public class FeedingEventServiceImpl implements FeedingEventService {
             case OTHER:
             default:
         }
-        feedCat(portion, foodPortion, callbackQuery, bot);
+        try {
+            feedCat(portion, foodPortion, callbackQuery, bot);
+        } catch (ParseException e) {
+            log.error("feedCat: ", e);
+        }
     }
 
     @Override
@@ -79,7 +84,7 @@ public class FeedingEventServiceImpl implements FeedingEventService {
         return feedingEventRepo.findAllByDateTimeAfter(date);
     }
 
-    private void feedCat(double portion, CatFoodPortion foodPortion, CallbackQuery callbackQuery, Bot bot) {
+    private void feedCat(double portion, CatFoodPortion foodPortion, CallbackQuery callbackQuery, Bot bot) throws ParseException {
         String message;
         CatFood catFood = catFoodService.getCatFood();
         if (catFood == null || catFood.getAmount() < portion) {
@@ -90,7 +95,7 @@ public class FeedingEventServiceImpl implements FeedingEventService {
             dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Bishkek"));
             String dateTime = dateFormat.format(new Date());
             FeedingEvent feedingEvent = FeedingEvent.builder()
-                    .dateTime(new Date())
+                    .dateTime(dateFormat.parse(dateTime))
                     .username(callbackQuery.getFrom().getFirstName())
                     .portion(foodPortion)
                     .build();

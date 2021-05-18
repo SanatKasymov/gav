@@ -33,7 +33,7 @@ public class HistoryServiceImpl implements HistoryService {
 
     @Override
     public void showHistoryForThreeDays(Bot bot) {
-        LocalDateTime ldt = LocalDateTime.now().minusDays(3);
+        LocalDateTime ldt = LocalDateTime.now().minusDays(1);
         Date threeDaysAgo = Date.from(ldt.atZone(TimeZone.getTimeZone("Asia/Bishkek").toZoneId()).toInstant());
         List<FeedingEvent> feedingEvents =
                 feedingEventService.getAllByDateTimeAfter(threeDaysAgo);

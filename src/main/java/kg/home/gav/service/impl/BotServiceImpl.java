@@ -25,7 +25,8 @@ public class BotServiceImpl implements BotService {
     @Autowired
     KeyboardService keyboardService;
 
-    private boolean inReplenishMode;
+    boolean inReplenishMode;
+    static String MENU_COMMAND = "меню";
 
     @Override
     public void processMessage(Update update, Bot bot) {
@@ -38,7 +39,7 @@ public class BotServiceImpl implements BotService {
         } else if (bot.isInReplenishMode()) {
             bot.setChatId(update.getMessage().getChatId());
             catFoodService.replenishFood(update.getMessage(), bot);
-        } else {
+        } else if (update.getMessage().getText().contains(MENU_COMMAND)){
             bot.setChatId(update.getMessage().getChatId());
             keyboardService.getMainKeyboard(bot);;
         }
